@@ -7,14 +7,14 @@ The code is self-containing to run the assignment.
 It first includes a people generator, XMLPeopleGen.java, which is used to create the .xml file in the requested format. It takes as parameter an integer n specifying the number of "person"s to generate. This will be set to 20 for the purposes of this assignment.
 This file, peopleXPATH.xml, will then be used for the first tasks (based on lab3) and is generated using JAXB marshalling from model classes Person.java and HealthProfile.java.
 
-	* HealthProfileXPATH.java (includes all the tasks required for the XPath based tasks) 
+* HealthProfileXPATH.java (includes all the tasks required for the XPath based tasks) 
 
 Secondly, a people.xsd xml schema is provided. This is then used by JAXB XJC module to automatically generate healthprofile.generated classes to be used in marshalling/unmarshalling operations (based on lab4).
 
 Those classes are then used for the remaining points in:
-	* HealthProfileWriter.java (marshals 3 people to peopleJAXB.xml file)
-	* HealthProfileReader.java (unmarshals the 3 people from the previous peopleJAXB.xml file)
-	* HealthProfileJson.java (outputs the same 3 people to people.json file)
+* HealthProfileWriter.java (marshals 3 people to peopleJAXB.xml file)
+* HealthProfileReader.java (unmarshals the 3 people from the previous peopleJAXB.xml file)
+* HealthProfileJson.java (outputs the same 3 people to people.json file)
 
 
 #Tasks
