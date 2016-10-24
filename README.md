@@ -38,7 +38,7 @@ The JAXB tasks are the following:
 To run the code a build.xml ant file and ivy.xml file are provided. As such Ant is required on the system along with Ivy. 
 The ant file includes targets for compiling the code, generating XJC classes, generating peopleXPATH.xml as well as running the requested tasks. (See build.xml targets for more examples)
 
-Since dependencies are managed by ivy that is required to run the project is ant execute.evaluation.
+Since dependencies are managed by ivy, all that is required to run the project is ant execute.evaluation.
 
 
 
