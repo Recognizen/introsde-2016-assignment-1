@@ -60,10 +60,10 @@
 		<echo message="${src.dir}/${xjc.package} has been deleted" />
 		<delete file="peopleXPATH.xml" />
 		<echo message="peopleXPATH.xml has been deleted" />
-		<delete file="people.json" />
-		<echo message="people.json has been deleted" />
 		<delete file="peopleJAXB.xml" />
 		<echo message="peopleJAXB.xml has been deleted" />
+		<delete file="people.json" />
+		<echo message="people.json has been deleted" />
 	</target>
 	
 	<!-- generates JAXB XJC classes from given people.xsd schema -->
