@@ -1,8 +1,6 @@
 package assignment;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,9 +16,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import model.HealthProfile;
-import model.Person;
-
 public class HealthProfileXPATH {
     private Document doc;
     private XPath xpath;
@@ -30,7 +25,7 @@ public class HealthProfileXPATH {
         DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
         domFactory.setNamespaceAware(true);
         DocumentBuilder builder = domFactory.newDocumentBuilder();
-        doc = builder.parse("people.xml");
+        doc = builder.parse("peopleXPATH.xml");
 
         //creating xpath object
         getXPathObj();
@@ -44,14 +39,14 @@ public class HealthProfileXPATH {
     
     //query using XPath inside the people.xml file and return the weight of the person with a given id
     public double getWeight(Long id) throws XPathExpressionException {
-        XPathExpression expr = xpath.compile("/people/person[@id='" + id + "']/healthProfile/weight/text()");
+        XPathExpression expr = xpath.compile("/people/person[@id='" + id + "']/healthprofile/weight/text()");
         Node node = (Node) expr.evaluate(doc, XPathConstants.NODE);
         return Double.valueOf(node.getTextContent());
     }
 
     //query using XPath inside the people.xml file and return the height of the person with a given id
     public double getHeight(Long id) throws XPathExpressionException {
-        XPathExpression expr = xpath.compile("/people/person[@id='" + id + "']/healthProfile/height/text()");
+        XPathExpression expr = xpath.compile("/people/person[@id='" + id + "']/healthprofile/height/text()");
         Node node = (Node) expr.evaluate(doc, XPathConstants.NODE);
         return Double.valueOf(node.getTextContent());
     }    
@@ -69,7 +64,7 @@ public class HealthProfileXPATH {
 
     //query people.xml using XPath and print all the HealthProfile information of the person with id
     public void printHealthProfile(Long id) throws XPathExpressionException {
-        XPathExpression expr = xpath.compile("/people/person[@id='" + id + "']/healthProfile");
+        XPathExpression expr = xpath.compile("/people/person[@id='" + id + "']/healthprofile");
         Node node = (Node) expr.evaluate(doc, XPathConstants.NODE);
         if(node != null){
         	System.out.println(node.getTextContent());
@@ -80,11 +75,19 @@ public class HealthProfileXPATH {
 
     //query people.xml using XPath and print all the "Person"s information having weight and condition
     public void printPeoplebyWeight(String weight, String condition) throws XPathExpressionException {
-        XPathExpression expr = xpath.compile("//person/healthProfile[weight " + condition + "'" + weight + "']/..");
-        NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
-        for(int i = 0; i<nodes.getLength() ; i++){
-        	System.out.println(nodes.item(i).getTextContent());
-   	 	}
+    	
+    	//whitelisting condition characters, only perform query if >,< or =
+    	if(condition.equals(">") || condition.equals("<") || condition.equals("=")){
+	        XPathExpression expr = xpath.compile("//person/healthprofile[weight " + condition + "'" + weight + "']/..");
+	        NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
+	        for(int i = 0; i<nodes.getLength() ; i++){
+	        	System.out.println("Person #"+ (i+1));
+	        	System.out.println(nodes.item(i).getTextContent());
+	   	 	}
+        }
+    	else{
+        	System.out.println(condition + " different from allowed operations(>,< or =)");
+    	}
     }
     
     public static void main(String[] args) throws ParserConfigurationException, SAXException,

@@ -1,4 +1,4 @@
-package model;
+package generator.model;
 
 import java.util.Calendar;
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "person")
 
 // XmlType can optionally define the order in which the fields of person are written
-@XmlType(propOrder = { "firstName", "lastName", "birthDate", "hProfile" })
+@XmlType(propOrder = { "firstname", "lastname", "birthdate", "hProfile" })
 
 // XmlAccessorType indicates what to use to create the mapping: either FIELDS, PROPERTIES (i.e., getters/setters), PUBLIC_MEMBER or NONE (which means, you should indicate manually)
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -23,12 +23,12 @@ public class Person {
 	@XmlAttribute(name="id")
 	private Long personId;
 	
-	private String firstName;		
-	private String lastName;
-	private String birthDate;
+	private String firstname;		
+	private String lastname;
+	private String birthdate;
 	
 	// XmlElement indicates the element to use for this field. Only used if the name in XML will be different than that in the class
-	@XmlElement(name="healthProfile")
+	@XmlElement(name="healthprofile")
 	private HealthProfile hProfile;	
 	
 	public Person(Long personId, String fname, String lname, String birthdate, HealthProfile hp) {
@@ -43,7 +43,7 @@ public class Person {
 		this.setPersonId(personId); 	
 		this.setFirstname(fname);
 		this.setLastname(lname);	
-		this.birthDate = this.getRandomDate(); 	
+		this.birthdate = this.getRandomDate(); 	
 		this.hProfile=hp;
 	}
 	
@@ -56,26 +56,26 @@ public class Person {
 	}
 	
 	public Person() {
-		this.firstName="Pinco";
-		this.lastName="Pallino";
+		this.firstname="Pinco";
+		this.lastname="Pallino";
 		this.hProfile=new HealthProfile();
 
 		// setting personId to a random number between 1 and 9999
 		this.personId = Math.round(Math.floor(Math.random()*9998)+1); // Solution to Exercise #01-1d
-		this.birthDate = this.getRandomDate();
+		this.birthdate = this.getRandomDate();
 	}
 
 	public String getFirstname() {
-		return firstName;
+		return firstname;
 	}
 	public void setFirstname(String firstname) {
-		this.firstName = firstname;
+		this.firstname = firstname;
 	}
 	public String getLastname() {
-		return lastName;
+		return lastname;
 	}
 	public void setLastname(String lastname) {
-		this.lastName = lastname;
+		this.lastname = lastname;
 	}
 	public HealthProfile getHProfile() {
 		return hProfile;
@@ -84,10 +84,10 @@ public class Person {
 		this.hProfile = hProfile;
 	}
 	public String getBirthdate() {
-		return birthDate;
+		return birthdate;
 	}
 	public void setBirthdate(String birthdate) {
-		this.birthDate = birthdate;
+		this.birthdate = birthdate;
 	}
 	public Long getPersonId() {
 		return personId;

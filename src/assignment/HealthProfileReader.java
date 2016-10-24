@@ -50,14 +50,14 @@ public class HealthProfileReader {
 
 				//Printing all the relevant information
 				System.out.println("Person with id: " + person.getId());
-				System.out.println("First Name: " + person.getFirstName());
-				System.out.println("Last Name: " + person.getLastName());
-				System.out.println("Born on: " + person.getBirthDate());
-				System.out.println("Weight: " + person.getHealthProfile().getWeight());
-				System.out.println("Height: " + person.getHealthProfile().getHeight());
-				System.out.println("Bmi: " + person.getHealthProfile().getBmi());
-				System.out.println("Last Update: " + person.getHealthProfile().getLastupdate());
-				System.out.println();
+				System.out.println("First Name: " + person.getFirstname());
+				System.out.println("Last Name: " + person.getLastname());
+				System.out.println("Born on: " + person.getBirthdate());
+				System.out.println("Weight: " + person.getHealthprofile().getWeight());
+				System.out.println("Height: " + person.getHealthprofile().getHeight());
+				System.out.println("Bmi: " + person.getHealthprofile().getBmi());
+				System.out.println("Last Update: " + person.getHealthprofile().getLastupdate());
+				System.out.println(" ");
 				
 			}
 		} catch (JAXBException e) {
@@ -68,7 +68,7 @@ public class HealthProfileReader {
 	}
 
 	public static void main(String[] argv) {
-		File xmlDocument = new File("people.xml");
+		File xmlDocument = new File("peopleJAXB.xml");
 		HealthProfileReader jaxbUnmarshaller = new HealthProfileReader();
 		jaxbUnmarshaller.unMarshall(xmlDocument);
 

@@ -40,14 +40,14 @@ public class HealthProfileWriter {
 				PersonType person = factory.createPersonType();
 				//Adding general information for the person
 				person.setId(BigInteger.valueOf(i));
-				person.setFirstName("FirstName"+i);
-				person.setLastName("LastName"+i);
+				person.setFirstname("FirstName"+i);
+				person.setLastname("LastName"+i);
 				
 				//BirthDate is set to current time in the proper format
 		        DatatypeFactory datatypeFactory = DatatypeFactory.newInstance();
 		        XMLGregorianCalendar now = 
 		            datatypeFactory.newXMLGregorianCalendar(new GregorianCalendar());
-				person.setBirthDate(now.toString());
+				person.setBirthdate(now.toString());
 				
 				//HealthProfile instantiation
 				HealthProfileType hp = factory.createHealthProfileType();
@@ -58,7 +58,7 @@ public class HealthProfileWriter {
 				hp.setLastupdate(now.toString()+i);
 				
 				//Adding the HealthProfile to the person
-				person.setHealthProfile(hp);
+				person.setHealthprofile(hp);
 				people.getPerson().add(person);
 			}
 			
@@ -81,7 +81,7 @@ public class HealthProfileWriter {
 	}
 
 	public static void main(String[] argv) throws DatatypeConfigurationException {
-		String xmlDocument = "people.xml";
+		String xmlDocument = "peopleJAXB.xml";
 		HealthProfileWriter jaxbMarshaller = new HealthProfileWriter();
 		jaxbMarshaller.generateXMLDocument(new File(xmlDocument));
 	}

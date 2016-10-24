@@ -6,10 +6,10 @@ import java.util.Random;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
-import model.HealthProfile;
-import model.Person;
+import generator.model.HealthProfile;
+import generator.model.Person;
 
-import dao.PeopleStore;
+import generator.dao.PeopleStore;
 
 public class XMLPeopleGen {	
 	
@@ -42,7 +42,7 @@ public class XMLPeopleGen {
 		    Marshaller m = jc.createMarshaller();
 		    m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		    // marshalling into a file
-		    m.marshal(people,new File("people.xml")); 
+		    m.marshal(people,new File("peopleXPATH.xml")); 
 		    //m.marshal(people, System.out);			  // marshalling into the system default output*/
 		}
 	}

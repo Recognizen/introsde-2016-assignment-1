@@ -1,4 +1,4 @@
-package model;
+package generator.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,8 +10,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name="healthProfile")
-@XmlType(propOrder = { "weight", "height", "BMI", "lastupdate" })
+@XmlRootElement(name="healthprofile")
+@XmlType(propOrder = { "lastupdate", "weight", "height", "BMI" })
 @XmlAccessorType(XmlAccessType.FIELD)
 public class HealthProfile {
 	private double weight; // in kg
