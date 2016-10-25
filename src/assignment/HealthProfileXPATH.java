@@ -21,11 +21,11 @@ public class HealthProfileXPATH {
     private XPath xpath;
     
 
-    public void loadXML() throws ParserConfigurationException, SAXException, IOException {
+    public void loadXML(String xmlFile) throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
         domFactory.setNamespaceAware(true);
         DocumentBuilder builder = domFactory.newDocumentBuilder();
-        doc = builder.parse("peopleXPATH.xml");
+        doc = builder.parse(xmlFile);
 
         //creating xpath object
         getXPathObj();
@@ -41,14 +41,24 @@ public class HealthProfileXPATH {
     public double getWeight(Long id) throws XPathExpressionException {
         XPathExpression expr = xpath.compile("/people/person[@id='" + id + "']/healthprofile/weight/text()");
         Node node = (Node) expr.evaluate(doc, XPathConstants.NODE);
-        return Double.valueOf(node.getTextContent());
+        if(node != null){
+            return Double.valueOf(node.getTextContent());
+        }else{
+        	System.out.println("Person with id = "+id+" not found!");
+        }
+        return -1.0;
     }
 
     //query using XPath inside the people.xml file and return the height of the person with a given id
     public double getHeight(Long id) throws XPathExpressionException {
         XPathExpression expr = xpath.compile("/people/person[@id='" + id + "']/healthprofile/height/text()");
         Node node = (Node) expr.evaluate(doc, XPathConstants.NODE);
-        return Double.valueOf(node.getTextContent());
+        if(node != null){
+            return Double.valueOf(node.getTextContent());
+        }else{
+        	System.out.println("Person with id = "+id+" not found!");
+        }
+        return -1.0;
     }    
 
     //query people.xml using XPath and print all the "Person"s inside the file
@@ -95,7 +105,7 @@ public class HealthProfileXPATH {
 		try {
 			
 			HealthProfileXPATH test = new HealthProfileXPATH();
-			test.loadXML();
+			test.loadXML("peopleXPATH.xml");
 			
 			int argSize = args.length;
 			
@@ -111,12 +121,22 @@ public class HealthProfileXPATH {
 				String weight = args[1];
 				String condition = args[2];
 				test.printPeoplebyWeight(weight, condition);				
+			}	
+			else if(argSize == 2 && args[0].equals("4")){
+				Long id = Long.valueOf(args[1]);
+				System.out.println(test.getWeight(id));				
+			}	
+			else if(argSize == 2 && args[0].equals("5")){
+				Long id = Long.valueOf(args[1]);
+				System.out.println(test.getHeight(id));					
 			}
 			else{
 				System.out.println("Specify correct operation!");
 				System.out.println("1 - Print people information (printPeople())");
 				System.out.println("2 - Print HealthProfile information by <Person id> (printHealthProfile(Long personid))");
 				System.out.println("3 - Print all people given <weight> and <condition> (printPeoplebyWeight(weight,condition))");
+				System.out.println("4 - Return and print the weight given <Person id> (double getWeight(Long personid))");
+				System.out.println("5 - Return and print the height given <Person id> (double getHeight(Long personid))");
 			}
 			
 		} catch (XPathExpressionException e) {

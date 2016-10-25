@@ -148,6 +148,38 @@
 			<arg value= ">" />
 		</java>
 	</target>
+
+	<!-- prints the weight from peopleXPATH.xml using XPATH -->
+	<!-- it depends on execute.PeopleGenerator because peopleXPATH.xml must exist in order to run properly -->
+	<target name="execute.GetWeight" depends= "execute.PeopleGenerator">
+		<echo message="Getting and printing weight of person with id = 5 if present in the peopleXPATH.xml file" />
+		<java classname="assignment.HealthProfileXPATH" classpath="${build.dir}">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar" />
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+			<arg value= "4"/>
+			<arg value= "5"/>
+		</java>
+	</target>	
+	
+	<!-- prints the height from peopleXPATH.xml using XPATH -->
+	<!-- it depends on execute.PeopleGenerator because peopleXPATH.xml must exist in order to run properly -->
+	<target name="execute.GetHeight" depends= "execute.PeopleGenerator">
+		<echo message="Getting and printing height of person with id = 5 if present in the peopleXPATH.xml file" />
+		<java classname="assignment.HealthProfileXPATH" classpath="${build.dir}">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar" />
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+			<arg value= "5"/>
+			<arg value= "5"/>
+		</java>
+	</target>	
 	
 	<!-- generates 3 people using XJC classes and marshalls to file in XML format -->
 	<target name="execute.HPWriter">
