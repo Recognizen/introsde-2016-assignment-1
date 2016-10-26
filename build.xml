@@ -103,7 +103,7 @@
 	
 	<!-- prints people information from peopleXPATH.xml using XPATH -->
 	<!-- it depends on execute.PeopleGenerator because peopleXPATH.xml must exist in order to run properly -->
-	<target name="execute.PrintPeople" depends= "execute.PeopleGenerator">
+	<target name="execute.PrintPeople">
 		<echo message="Printing information of people in the peopleXPATH.xml file" />
 		<java classname="assignment.HealthProfileXPATH" classpath="${build.dir}">
 			<classpath>
@@ -118,7 +118,7 @@
 		
 	<!-- prints people information from peopleXPATH.xml using XPATH -->
 	<!-- it depends on execute.PeopleGenerator because peopleXPATH.xml must exist in order to run properly -->
-	<target name="execute.PrintHP" depends= "execute.PeopleGenerator">
+	<target name="execute.PrintHP">
 		<echo message="Printing HealthProfile information of person with id = 5 if present in the peopleXPATH.xml file" />
 		<java classname="assignment.HealthProfileXPATH" classpath="${build.dir}">
 			<classpath>
@@ -134,7 +134,7 @@
 	
 	<!-- prints people information from peopleXPATH.xml using XPATH takes as input the weight and a condition (>, < , =) -->
 	<!-- it depends on execute.PeopleGenerator because peopleXPATH.xml must exist in order to run properly -->
-	<target name="execute.PrintByWeight" depends= "execute.PeopleGenerator">
+	<target name="execute.PrintByWeight">
 		<echo message="Printing people information from peopleXPATH.xml file having weight > than 90" />
 		<java classname="assignment.HealthProfileXPATH" classpath="${build.dir}">
 			<classpath>
@@ -151,7 +151,7 @@
 
 	<!-- prints the weight from peopleXPATH.xml using XPATH -->
 	<!-- it depends on execute.PeopleGenerator because peopleXPATH.xml must exist in order to run properly -->
-	<target name="execute.GetWeight" depends= "execute.PeopleGenerator">
+	<target name="execute.GetWeight">
 		<echo message="Getting and printing weight of person with id = 5 if present in the peopleXPATH.xml file" />
 		<java classname="assignment.HealthProfileXPATH" classpath="${build.dir}">
 			<classpath>
@@ -167,7 +167,7 @@
 	
 	<!-- prints the height from peopleXPATH.xml using XPATH -->
 	<!-- it depends on execute.PeopleGenerator because peopleXPATH.xml must exist in order to run properly -->
-	<target name="execute.GetHeight" depends= "execute.PeopleGenerator">
+	<target name="execute.GetHeight">
 		<echo message="Getting and printing height of person with id = 5 if present in the peopleXPATH.xml file" />
 		<java classname="assignment.HealthProfileXPATH" classpath="${build.dir}">
 			<classpath>
@@ -221,7 +221,7 @@
 	</target>	
 	
 	<!-- runs the targets in order as requested by the assignment -->
-	<target name="execute.evaluation" depends="clean, compile, execute.PrintPeople, execute.PrintHP, execute.PrintByWeight, execute.HPWriter, execute.HPReader, execute.HPJson">
+	<target name="execute.evaluation" depends="clean, compile, execute.PeopleGenerator, execute.PrintPeople, execute.PrintHP, execute.PrintByWeight, execute.HPWriter, execute.HPReader, execute.HPJson">
 		<echo message="Evaluation has been executed" />
 	</target>
 </project>
